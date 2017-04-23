@@ -29,7 +29,7 @@
 	
 	header {
 	color: White;
-	background-color: #113537;
+	background-color: #333;
 	text-align: center;
 	font-size: 60px;	
 	padding: 10px;
@@ -67,6 +67,9 @@ img .centro{
 float: center;
 }
 
+img. direita{
+float: right
+}
 ul.nav {
     list-style-type: none;
     margin: 0;
@@ -77,6 +80,10 @@ ul.nav {
 
 li.nav {
     float: left;
+}
+
+li.direita {
+float: right;
 }
 
 li a {
