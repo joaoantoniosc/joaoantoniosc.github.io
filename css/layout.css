@@ -181,3 +181,14 @@ color: white;}
 .dropdown:hover .dropdown-content {
     display: block;
 }
+.direita{
+float: right;
+}
+
+.esquerda {
+float: left;
+}
+
+.centro {
+float: center;
+}
