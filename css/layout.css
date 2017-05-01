@@ -1,4 +1,4 @@
-    h1{
+      h1{
       color:#113537
     }
 
@@ -107,7 +107,7 @@ div.gallery {
     margin: 5px;
     border: 1px solid #ccc;
     float: left;
-    width: 180px;
+    width: 540px;
 }
 
 div.gallery:hover {
