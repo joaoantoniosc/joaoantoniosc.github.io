@@ -1,4 +1,4 @@
-      h1{
+	      h1{
       color:#113537
     }
 
@@ -16,7 +16,7 @@
     
     body {
       background: #D8E1E1;
-      
+      margin: 0px;
     }
     
     a {
@@ -32,14 +32,14 @@
 	background-color: #333;
 	text-align: center;
 	font-size: 60px;	
-	padding: 10px;
-	 }
+	padding: 0px;
+	 margin: 0px; }
   
   nav {
   color: white;
   text-align: center;
-  font-size: 20px
-
+  font-size: 20px;
+margin: 0px;
  }
   
   article { 
@@ -191,4 +191,3 @@ float: left;
 
 .centro {
 float: center;
-}
