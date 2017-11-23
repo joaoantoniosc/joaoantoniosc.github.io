@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,7 +99,9 @@ container-fluid {
     background: #16151A !important;
 }
 
-
+.teste{
+    background: rgba(255, 255, 255, 0.0) !important;
+}
 
 .navbar-default {
     background: transparent;
@@ -424,11 +427,9 @@ color: #880E0E;
 $(function() {
   $(window).on("scroll", function() {
     if($(window).scrollTop() > 300) {
-      $("#minhaNav").addClass("teste2");
-      $("#minhaNav").fadeIn()
-      
+      $("#minhaNav").css('background', 'black');      
     } else {
-      $("#minhaNav").fadeOut()
+      $("#minhaNav").css('background', 'none');
     }
   });
 });
@@ -439,7 +440,7 @@ $(function() {
 
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
- <div style="display: none;" id="minhaNav" class="sidebar-wrapper navbar navbar-default navbar-fixed-top" role="navigation">
+ <div id="minhaNav" class="sidebar-wrapper navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -477,24 +478,27 @@ $(function() {
 </div>
 <div class="spacer"></div>
         <div class="primeiro">
+<div id="sobre">
   <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
+
 </br>
 </br>
 </br>
 </br>
 <div class="title">SOBRE MIM</div>
-<div id="sobre"></div>
+
       <p class="just">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+      </p></div>
 <div class="container">
 <div class="titlered">MINHAS LINGUAGENS DE PROGRAMAÇÃO</div>
     <div class="row">
         <div class="col-md-3 col-sm-3">
-		<p class="hab">HTML&CSS*</p>
+		<p class="hab">HTML & CSS</p>
             <div class="progress blue">
                 <span class="progress-left">
                     <span class="progress-bar"></span>
