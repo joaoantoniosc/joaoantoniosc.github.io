@@ -1,228 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Calculadora :D</title>
+  <title>Calculadora</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="calc.css">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <style>
-  body, html {
-	
-	height: 100%;
-	background-color: #000000;
-	font-family: 'Oswald', sans-serif;
-	
-}
-
-.calculadora {
-	
-	height: 600px;
-	background-color: #f2f2f2;
-	width: 100%;
-	margin-top: 20%;
-	padding-top: 0.1%;
-	border: 2px solid rgba(233, 232, 231, 1);	
-	
-}
-
-
-.visor {
-	
-	border: 2px solid black;
-	background: white;
-	height: 15%;
-	margin: 10%;
-	
-	
-}
-
-.quadrado-botoes {
-	
-	margin-left: 10%;
-	margin-right: 10%;
-	
-}
-
-.btn {
-	
-	width: 100%;
-	font-size: 40px;
-	border-radius: 0;
-}
-
-.col-xs-3 {
-	
-	margin: 0;
-	padding: 0;
-	
-}
-
-.operacao {
-	
-	font-size: 20px;
-	color: #ccc;
-	margin-left: 4%;
-	
-}
-
-.numeracao {
-	
-	font-size: 40px;
-	color: black;
-	float: right;
-	margin-right: 4%;
-	
-}
-  </style>
-  <script>
   
-	$(document).ready( function(){
+  <script type="text/javascript">
+    
+    $(document).ready( function(){
+
+        var w = $(window);
+        var numero = $('.numeros');
+        var virgula = $('.virgula');
+        var visor_numeros = $('.numeracao');
+        var operacao  = $('.operacao');
+        var conta = $('.conta');
+        var igual = $('.igual');
+        var deleta = $('.apagar');
+        var tem_ponto = false;
+        var num1 = '';
+        var num2 = '';
+        var ativo = '';
+        var sinal = '';
 		
-		var numeros = $('.btn-default');
-		var operacao = $('.btn-warning');
-		var igual = $('.btn-success');
-		var apagar = $('.btn-danger');
-		var numeracao = $('.numeracao');
-		var conta = $('.operacao');
-		var sinal = '';
-		var num1 = '';
-		var num2= '';
-		
-		function apagarVisor(){
-			numeracao.html('');
-			conta.html('');
-		}
-		
-		function mostrarNumero(num){
-			if(numeracao.html().length < 12){
-				numeracao.html(numeracao.html() + num);
-			}	
-		}
-		
-		function mostrarOperacao(n){
-			if(num2 == ''){
-				sinal = n;
-				conta.html(num1 + ' ' + sinal);
+		$(document).on('keydown', function(){
+			var e = e || window.event;
+			var n = 0;			
+			
+			if((e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105)){
+			
+				switch(e.keyCode){
+			
+					case 48:
+						n = 0
+						break;
+						
+					case 49:
+						n = 1
+						break;
+						
+					case 50:
+						n = 2
+						break;
+						
+					case 51:
+						n = 3
+						break;
+						
+					case 52:
+						n = 4
+						break;
+						
+					case 53:
+						n = 5
+						break;
+						
+					case 54:
+						n = 6
+						break;
+						
+					case 55:
+						n = 7
+						break;
+						
+					case 56:
+						n = 8
+						break;
+						
+					case 57:
+						n = 9
+						break;
+						
+					case 96:
+						n = 0
+						break;
+						
+					case 97:
+						n = 1
+						break;
+						
+					case 98:
+						n = 2
+						break;
+						
+					case 99:
+						n = 3
+						break;
+						
+					case 100:
+						n = 4
+						break;
+						
+					case 101:
+						n = 5
+						break;
+						
+					case 102:
+						n = 6
+						break;
+						
+					case 103:
+						n = 7
+						break;
+						
+					case 104:
+						n = 8
+						break;
+						
+					case 105:
+						n = 9
+						break;
+				
+				}
+				
+				mostraVisor(n);
+			
 			} else {
-				conta.html(num1 + ' ' + sinal + ' ' + num2)
+			
+				switch(e.keyCode){
+				
+					case 106:
+						clicaOperacao('x');
+						break;
+						
+					case 107:
+						clicaOperacao('+');
+						break;
+						
+					case 109:
+						clicaOperacao('-');
+						break;
+						
+					case 111:
+						clicaOperacao('÷');
+						break;
+					
+					case 8:
+						apagaUltimo();
+						break;
+						
+					case 46:
+						apagaTudo();
+						break;
+						
+					case 194:
+						clicaVirgula();
+						break;
+						
+					case 110:
+						clicaVirgula();
+						break;
+						
+					case 190:
+						clicaVirgula();
+						break;
+						
+					case 188:
+						clicaVirgula();
+						break;
+						
+					case 13:
+						clicaIgual();
+						break;
+						
+					case 187:
+						clicaIgual();
+						break;
+				
+				}
+				
+			
+			}
+			
+			//alert(e.keyCode);
+			
+						
+			
+		})
+        
+        function alteraPagina(){
+          var altura_pagina = w.height();
+          var altura_visor = altura_pagina / 5
+		  var altura_calc = altura_pagina - altura_visor;
+		  //$('.botoes').css('height', altura_calc);
+          $('.visor').css('height', altura_visor);
+		  if(w.height() <= 768){
+			$('.numeracao').css('top', altura_visor / 2);
+			$('.botoes').css('bottom', '-23px');
+			$('.btn').css('font-size', (w.height()*52)/604);
+		  } else {
+			$('.numeracao').css('top', altura_visor);
+			$('.btn').css('font-size', '60px');
+			$('.botoes').css('bottom', 0);
+		  }
+          visor_numeros.css('bottom', altura_pagina - altura_visor);
+        }
+
+        function fazerOperacao(){
+          var resultado = 0;
+          switch(sinal){
+            case 'x':
+              resultado = num1 * num2;
+              break;
+
+            case '+':
+              resultado = parseInt(num1) + parseInt(num2);
+              break;
+
+            case '-':
+              resultado = num1 - num2;
+              break;
+
+            case '÷':
+              resultado = num1 / num2;
+              break;
+
+            case '√':
+              resultado = num1**(1/2);
+              break;
+
+            case '%':
+              resultado = num1 * (num2/100);
+              break;
+          }
+          if(w.width() < 768){
+            resultado = parseInt(resultado * 100);
+            resultado = resultado / 100;
+          }
+          num1 = '';
+          num2 = '';
+          visor_numeros.html(resultado);
+        }
+
+        function mandaConta(x){
+          ativo = visor_numeros.html();
+          if(num1 == ''){
+            num1 = ativo;
+            conta.html(num1 + ' ' + x);
+          } else {
+            num2 = ativo;
+            conta.html(num1 + ' ' + x + ' ' + num2);
+          }
+        }
+
+        function apagaTudo(){
+          conta.html('');
+		  ativo = '0';
+          visor_numeros.html(0);
+		  tem_ponto = false;
+        }
+		
+		function mostraVisor(n){
+		
+			if(visor_numeros.html() == '0'){
+				visor_numeros.html('');
+			}
+			visor_numeros.html(visor_numeros.html() + n)
+			ativo = visor_numeros.html();
+			ultimo_apertado = n;
+		
+		}
+		
+		function apagaUltimo(){
+		
+			var posicao = visor_numeros.html().length - 1;
+			if(visor_numeros.html().charAt(posicao) == '.'){
+				tem_ponto = false;
+			}
+			ativo = visor_numeros.html().substr(0, posicao);
+			if(ativo == ''){
+				ativo = 0;
+			}
+			visor_numeros.html(ativo);
+		
+		}
+		
+		function clicaVirgula(){
+		
+			if(ativo != '' && !tem_ponto){
+				tem_ponto = true;
+				ultimo_apertado = '.';
+				ativo = visor_numeros.html()
+				visor_numeros.html(ativo + '.')
+			}
+		
+		}
+		
+		function clicaOperacao(x){
+		
+			if(ativo != '' && num1 == ''){
+				ativo = visor_numeros.html()
+				sinal = x;
+				mandaConta(sinal);
+				visor_numeros.html('');
+			}
+
+			if(sinal == '√'){
 				fazerOperacao();
 			}	
+		
 		}
 		
-		function fazerOperacao(){
-			var resultado = 0;
-			num1 = parseInt(num1);
-			num2 = parseInt(num2);
-			switch(sinal){
-				
-				case '+':
-					resultado = num1 + num2;
-					break;
-					
-				case '-':
-					resultado = num1 - num2;
-					break;
-					
-				case '*':
-					resultado = num1 * num2;
-					break;
-					
-				case '/':
-					resultado = num1 / num2;
-					break;
-				
-			}
-			resultado = parseInt(resultado*100);
-			resultado = resultado / 100;
-			numeracao.html(resultado);
-			voltaValores();
+		function clicaIgual(){
+		
+			if(ativo != ''){
+				ativo = visor_numeros.html();
+				mandaConta(sinal);
+				visor_numeros.html('');
+				fazerOperacao();
+			  }
+		
 		}
 		
-		function voltaValores(){
-			num1 = '';
-			num2 = '';
-			sinal = '';
-		}
-		
-		apagar.click( function(){
-			apagarVisor();
-		})
-		
-		operacao.click( function(){
-			num1 = numeracao.html();
-			mostrarOperacao($(this).html());
-			numeracao.html('');
-		})
 
+        w.resize( function(){
+          alteraPagina();
+        })
+
+        numero.click( function(){
+          mostraVisor($(this).html())
+        })
+
+        virgula.click( function(){
+          clicaVirgula();
+        })
+
+        operacao.click( function(){
+          clicaOperacao($(this).html());
+        })
+
+        igual.click( function(){
+          clicaIgual();
+        })
+
+        deleta.click( function(){
+          apagaUltimo();
+        })
+
+        deleta.dblclick( function(){
+          apagaTudo();
+        })
 		
-		
-		numeros.click( function(){			
-			mostrarNumero($(this).val());			
-		})
-		
-		igual.click( function(){
-			num2 = numeracao.html();
-			mostrarOperacao(num2);
-		})
-		
-		
-		apagarVisor();
-		
-	})
-  
+
+        apagaTudo();
+        alteraPagina();
+
+    })
+
   </script>
+
+  <style type="text/css">
+    
+  body, html {
+    height: 100%;
+    background: black;
+    overflow-x: hidden;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .botoes {
+    position: absolute;
+    bottom: -25px;
+	padding: 0;
+	margin: 0;
+    width: 100%;
+  }
+
+  .conta {
+    font-size: 40px;
+    color: #ccc;
+    margin: 10px;
+  }
+
+  .numeracao {
+    right: 10px;
+    position: absolute;
+    color: white;
+    font-size: 85px;
+  }
+
+  .btn {
+    width: 100%;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .col-xs-3 {
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #ccc;
+  }
+
+  .col-xs-6 {
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #ccc;
+  }
+
+  </style>
 </head>
 <body>
-	<div class="col-md-4"></div>
-	<div class="col-md-4">
-	
-		<div class="calculadora">
-			<div class="visor">
-				<div class="operacao">
-					
-				</div>
-				<div class="numeracao">
-					
-				</div>
-			</div>
-			<div class="quadrado-botoes">
-				
-				<div class="col-xs-3">
-					<button value="1" class="btn btn-default">1</button>
-					<button value="4" class="btn btn-default">4</button>
-					<button value="7" class="btn btn-default">7</button>
-					<button class="btn btn-danger">C</button>
-				</div>
-				<div class="col-xs-3">
-					<button value="2" class="btn btn-default">2</button>
-					<button value="5" class="btn btn-default">5</button>
-					<button value="8" class="btn btn-default">8</button>
-					<button value="0" class="btn btn-default">0</button>				
-				</div>
-				<div class="col-xs-3">
-					<button value="3" class="btn btn-default">3</button>
-					<button value="6" class="btn btn-default">6</button>
-					<button value="9" class="btn btn-default">9</button>
-					<button class="btn btn-success">=</button>				
-				</div>
-				<div class="col-xs-3">
-					<button class="btn btn-warning">+</button>
-					<button class="btn btn-warning">-</button>
-					<button class="btn btn-warning">/</button>
-					<button class="btn btn-warning">*</button>			
-				</div>
-			
-			</div>
-		</div>
-	
-	</div>
-	
+
+  <div class="visor">
+    <div class="conta">
+      
+    </div>
+    <div class="numeracao">
+      0
+    </div>
+  </div>
+
+  <div class="botoes">
+    
+    <div class="row">
+    
+      <div class="col-xs-3">
+	  
+        <button class="btn btn-secondary apagar">C</button>    
+        <button class="btn btn-default numeros">7</button>
+        <button class="btn btn-default numeros">4</button>
+        <button class="btn btn-default numeros">1</button>
+
+      </div>
+      <div class="col-xs-3">       
+        <button class="btn btn-secondary operacao percent troca">%</span></button>
+        <button class="btn btn-default numeros">8</button>
+        <button class="btn btn-default numeros">5</button>
+        <button class="btn btn-default numeros">2</button>
+
+      </div>
+      <div class="col-xs-3">
+        
+        <button class="btn btn-secondary operacao">√</span></button>
+        <button class="btn btn-default numeros">9</button>
+        <button class="btn btn-default numeros">6</button>
+        <button class="btn btn-default numeros">3</button>
+
+      </div>
+      <div class="col-xs-3">
+        
+        <button class="btn btn-warning operacao">÷</button>
+        <button class="btn btn-warning operacao">x</button>
+        <button class="btn btn-warning operacao">-</button>
+        <button class="btn btn-warning operacao">+</button>
+
+      </div>
+
+    </div>
+    <div class="row">
+      
+      <div class="col-xs-6">
+        
+          <button class="btn btn-default numeros">0</button>
+
+      </div>
+      <div class="col-xs-3">
+        
+          <button class="btn btn-default virgula">,</button>
+
+      </div>
+      <div class="col-xs-3">
+        
+          <button class="btn btn-warning igual">=</button>
+
+      </div>
+
+    </div>
+  </div>
 
 </body>
 </html>
-
