@@ -1,1 +1,228 @@
-calculadora
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Calculadora :D</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="calc.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <style>
+  body, html {
+	
+	height: 100%;
+	background-color: #000000;
+	font-family: 'Oswald', sans-serif;
+	
+}
+
+.calculadora {
+	
+	height: 600px;
+	background-color: #f2f2f2;
+	width: 100%;
+	margin-top: 20%;
+	padding-top: 0.1%;
+	border: 2px solid rgba(233, 232, 231, 1);	
+	
+}
+
+
+.visor {
+	
+	border: 2px solid black;
+	background: white;
+	height: 15%;
+	margin: 10%;
+	
+	
+}
+
+.quadrado-botoes {
+	
+	margin-left: 10%;
+	margin-right: 10%;
+	
+}
+
+.btn {
+	
+	width: 100%;
+	font-size: 40px;
+	border-radius: 0;
+}
+
+.col-xs-3 {
+	
+	margin: 0;
+	padding: 0;
+	
+}
+
+.operacao {
+	
+	font-size: 20px;
+	color: #ccc;
+	margin-left: 4%;
+	
+}
+
+.numeracao {
+	
+	font-size: 40px;
+	color: black;
+	float: right;
+	margin-right: 4%;
+	
+}
+  </style>
+  <script>
+  
+	$(document).ready( function(){
+		
+		var numeros = $('.btn-default');
+		var operacao = $('.btn-warning');
+		var igual = $('.btn-success');
+		var apagar = $('.btn-danger');
+		var numeracao = $('.numeracao');
+		var conta = $('.operacao');
+		var sinal = '';
+		var num1 = '';
+		var num2= '';
+		
+		function apagarVisor(){
+			numeracao.html('');
+			conta.html('');
+		}
+		
+		function mostrarNumero(num){
+			if(numeracao.html().length < 12){
+				numeracao.html(numeracao.html() + num);
+			}	
+		}
+		
+		function mostrarOperacao(n){
+			if(num2 == ''){
+				sinal = n;
+				conta.html(num1 + ' ' + sinal);
+			} else {
+				conta.html(num1 + ' ' + sinal + ' ' + num2)
+				fazerOperacao();
+			}	
+		}
+		
+		function fazerOperacao(){
+			var resultado = 0;
+			num1 = parseInt(num1);
+			num2 = parseInt(num2);
+			switch(sinal){
+				
+				case '+':
+					resultado = num1 + num2;
+					break;
+					
+				case '-':
+					resultado = num1 - num2;
+					break;
+					
+				case '*':
+					resultado = num1 * num2;
+					break;
+					
+				case '/':
+					resultado = num1 / num2;
+					break;
+				
+			}
+			resultado = parseInt(resultado*100);
+			resultado = resultado / 100;
+			numeracao.html(resultado);
+			voltaValores();
+		}
+		
+		function voltaValores(){
+			num1 = '';
+			num2 = '';
+			sinal = '';
+		}
+		
+		apagar.click( function(){
+			apagarVisor();
+		})
+		
+		operacao.click( function(){
+			num1 = numeracao.html();
+			mostrarOperacao($(this).html());
+			numeracao.html('');
+		})
+
+		
+		
+		numeros.click( function(){			
+			mostrarNumero($(this).val());			
+		})
+		
+		igual.click( function(){
+			num2 = numeracao.html();
+			mostrarOperacao(num2);
+		})
+		
+		
+		apagarVisor();
+		
+	})
+  
+  </script>
+</head>
+<body>
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+	
+		<div class="calculadora">
+			<div class="visor">
+				<div class="operacao">
+					
+				</div>
+				<div class="numeracao">
+					
+				</div>
+			</div>
+			<div class="quadrado-botoes">
+				
+				<div class="col-xs-3">
+					<button value="1" class="btn btn-default">1</button>
+					<button value="4" class="btn btn-default">4</button>
+					<button value="7" class="btn btn-default">7</button>
+					<button class="btn btn-danger">C</button>
+				</div>
+				<div class="col-xs-3">
+					<button value="2" class="btn btn-default">2</button>
+					<button value="5" class="btn btn-default">5</button>
+					<button value="8" class="btn btn-default">8</button>
+					<button value="0" class="btn btn-default">0</button>				
+				</div>
+				<div class="col-xs-3">
+					<button value="3" class="btn btn-default">3</button>
+					<button value="6" class="btn btn-default">6</button>
+					<button value="9" class="btn btn-default">9</button>
+					<button class="btn btn-success">=</button>				
+				</div>
+				<div class="col-xs-3">
+					<button class="btn btn-warning">+</button>
+					<button class="btn btn-warning">-</button>
+					<button class="btn btn-warning">/</button>
+					<button class="btn btn-warning">*</button>			
+				</div>
+			
+			</div>
+		</div>
+	
+	</div>
+	
+
+</body>
+</html>
+
