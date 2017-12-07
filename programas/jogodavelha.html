@@ -1,1 +1,216 @@
-aaaa
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Jogo da Velha</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="estilo.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    
+    $(document).ready( function() {
+      var quadrado = $('.quadrado');
+      var jogada = 0;
+      var possibilidades = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [7, 5, 3]]
+      var input_nomes = $('.nomes');
+      var botao = $('#btn-inicio');
+	  var ganhador = '';
+	  var id = '';
+
+      input_nomes.keyup( function(){
+        verificaBotao();
+      })
+
+      botao.click( function(){
+        $('.nome1').html($('#nome2').val());
+        $('.nome2').html($('#nome1').val());
+        $('.escolha-nomes').hide();
+        $('.jogo').show();
+      })
+
+      quadrado.click( function(){
+       
+       if(ganhador == ''){
+			if($(this).html() >= 1 || $(this).html() <= 9){
+				var num = $(this).attr('id');
+				 jogada++;
+				  if(jogada%2 == 0){
+					$(this).html('<img class="img" src="imagens/marcacao_2.png">')
+				  } else {
+					$(this).html('<img class="img" src="imagens/marcacao_1.png">')           
+				  }
+				  mudaPossibilidades(num);
+			}
+	   }
+        
+      })
+
+      function verificaBotao(){
+        if($('#nome1').val().length > 0 && $('#nome2').val().length > 0){
+          $('#btn-inicio').attr('disabled', false);
+        } else {
+          $('#btn-inicio').attr('disabled', true);
+        }
+      }
+
+      function mudaPossibilidades(k){
+        for(var i = 0; i <= 7; i++){
+          for(var x = 0; x <= 2; x ++){
+            if(possibilidades[i][x] == k){
+              if(jogada%2 == 0){
+                possibilidades[i][x] = 10;
+              } else {
+                possibilidades[i][x] = -10
+              }
+            }
+          };
+        };
+        if(jogada >= 5){
+          verificaGanhador();
+        }        
+      }
+
+      function verificaGanhador(){
+        for(var i = 0; i <= 7; i++){
+          var soma = 0;
+          for(var x = 0; x <= 2; x ++){
+            soma += possibilidades[i][x];
+          };
+          if(soma == 30 || soma == -30){
+            if(soma == 30){
+              $('.pontos2').html(parseInt($('.pontos2').html()) + 1)
+              ganhador = $('.nome2').html();
+            } else {
+              $('.pontos1').html(parseInt($('.pontos1').html()) + 1)
+              ganhador = $('.nome1').html();
+            }
+            //alert('Parabéns ' + ganhador);
+			restart(i);
+            //recomecar();           
+            break;
+          }
+        }
+		if(ganhador == '' && jogada >= 9){
+			$('#comentarios').html('Não houve ganhadores!')
+			$('#recomecar').show();
+		};
+      }
+	  
+	  function recomecar(){
+        possibilidades = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [7, 5, 3]];
+            jogada = 0;
+            for(var j = 1; j <= 9; j++){
+              $('#'+j).html(j);
+            }
+			ganhador = '';
+      }
+	  
+	  function restart(i){
+		$('#recomecar').show();		
+		if(ganhador != ''){
+			var cor = '';
+			if(ganhador == $('.nome2').html()){
+				cor = 'blue';
+			} else {
+				cor = 'red';
+			}
+			$('#comentarios').css('color', cor)
+			$('#comentarios').html(ganhador +' venceu!')
+			possibilidades = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [7, 5, 3]];
+			
+			var p = 0;
+			id = setInterval(pisca, 250);
+			function pisca(){
+			console.log(p);
+				p++;
+				if(p%2 == 0){
+					for(var k = 0; k <= 2; k++){
+						$('#'+possibilidades[i][k]).html('');
+					}
+				} else {
+					for(var k = 0; k <= 2; k++){
+						if(ganhador != $('.nome2').html()){
+							$('#'+possibilidades[i][k]).html('<img class="img" src="imagens/marcacao_1.png">');
+						} else {
+							$('#'+possibilidades[i][k]).html('<img class="img" src="imagens/marcacao_2.png">');
+						}
+						
+					}				
+				}
+			}
+		}
+	  }
+	  
+	  $('#recomecar').click( function(){
+		$(this).hide();
+		$('#comentarios').html('');
+		cor = '';
+		clearInterval(id);
+		id = '';
+		recomecar();
+	  })      
+
+      verificaBotao();
+
+
+    })
+
+  </script>
+</head>
+<body>
+  
+<div class="container-fluid escolha-nomes" style="">
+      <div class="col-sm-4 text-center">
+        <img src="imagens/jogador_1.png"><br/><br/>
+        <input id="nome2" class="nomes" type="text" name="" placeholder="Jogador 1" style="border: none;">
+      </div>
+       <div class="col-sm-4 text-center">
+        <button id="btn-inicio" class="btn btn-success" style="margin-top: 20px;" disabled="true"><span class="glyphicon glyphicon-play" style="font-size: 50px; padding: 20px;"></span></button>
+      </div>
+       <div class="col-sm-4 text-center">
+        <img src="imagens/jogador_2.png"><br/><br/>
+         <input id="nome1" class="nomes" type="text" name="" placeholder="Jogador 2" style="border: none;">
+      </div>
+</div>
+<br/><br/>
+<div class="container jogo" style="display: none;">
+  <div class="col-sm-2 text-center">
+     <img src="imagens/jogador_1.png">
+     <p class="nome1">NOME JOGADOR</p><br/>
+     <p class="pontos1">0</p>
+  </div>
+  <div class="col-sm-8 text-center">
+	<button id="recomecar" class="btn btn-default" style="display: none;">RECOMEÇAR</button>
+     <div class="tabuleiro">
+        <div class="col-sm-3 retangulo">
+        <div id="1" class="quadrado borda-direita borda-baixo">1</div>
+        <div id="2" class="quadrado borda-direita borda-baixo">2</div>
+        <div id="3" class="quadrado borda-direita">3</div>
+      </div>
+      <div class="col-sm-3 retangulo">
+        <div id="4" class="quadrado borda-direita borda-baixo">4</div>
+        <div id="5" class="quadrado borda-direita borda-baixo">5</div>
+        <div id="6" class="quadrado borda-direita">6</div>
+      </div>
+      <div class="col-sm-3 retangulo">
+        <div id="7" class="quadrado borda-baixo">7</div>
+        <div id="8" class="quadrado borda-baixo">8</div>
+        <div id="9" class="quadrado">9</div>
+      </div>
+     </div>
+	 <br/>
+	 <br/>
+	 <br/>
+	 <p style="font-size: 30px;" id="comentarios"></p>
+  </div>
+  <div class="col-sm-2 text-center">
+    <img src="imagens/jogador_2.png">
+    <p class="nome2">NOME JOGADOR</p><br/>
+     <p class="pontos2">0</p>
+  </div>
+</div>
+
+</body>
+</html>
