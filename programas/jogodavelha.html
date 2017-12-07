@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -37,9 +38,9 @@
 				var num = $(this).attr('id');
 				 jogada++;
 				  if(jogada%2 == 0){
-					$(this).html('<img class="img" src="imagens/marcacao_2.png">')
+					$(this).html('<img class="img" src="https://joaoantoniosc.github.io/programas/marcacao_2.png">')
 				  } else {
-					$(this).html('<img class="img" src="imagens/marcacao_1.png">')           
+					$(this).html('<img class="img" src="https://joaoantoniosc.github.io/programas/marcacao_1.png">')           
 				  }
 				  mudaPossibilidades(num);
 			}
@@ -132,9 +133,9 @@
 				} else {
 					for(var k = 0; k <= 2; k++){
 						if(ganhador != $('.nome2').html()){
-							$('#'+possibilidades[i][k]).html('<img class="img" src="imagens/marcacao_1.png">');
+							$('#'+possibilidades[i][k]).html('<img class="img" src="https://joaoantoniosc.github.io/programas/marcacao_1.png">');
 						} else {
-							$('#'+possibilidades[i][k]).html('<img class="img" src="imagens/marcacao_2.png">');
+							$('#'+possibilidades[i][k]).html('<img class="img" src="https://joaoantoniosc.github.io/programas/marcacao_2.png">');
 						}
 						
 					}				
@@ -163,21 +164,21 @@
   
 <div class="container-fluid escolha-nomes" style="">
       <div class="col-sm-4 text-center">
-        <img src="imagens/jogador_1.png"><br/><br/>
+        <img src="https://joaoantoniosc.github.io/programas/jogador_1.png"><br/><br/>
         <input id="nome2" class="nomes" type="text" name="" placeholder="Jogador 1" style="border: none;">
       </div>
        <div class="col-sm-4 text-center">
-        <button id="btn-inicio" class="btn btn-success" style="margin-top: 20px;" disabled="true"><span class="glyphicon glyphicon-play" style="font-size: 50px; padding: 20px;"></span></button>
+        <button id="btn-inicio" class="btn btn-success" style="margin-top: 20px;" disabled="true"><span class="glyphicon glyphicon-play" style="font-size: 50px; padding: 20px; background-image: src('https://joaoantoniosc.github.io/programas/iniciar.png')"></span></button>
       </div>
        <div class="col-sm-4 text-center">
-        <img src="imagens/jogador_2.png"><br/><br/>
+        <img src="https://joaoantoniosc.github.io/programas/jogador_2.png"><br/><br/>
          <input id="nome1" class="nomes" type="text" name="" placeholder="Jogador 2" style="border: none;">
       </div>
 </div>
 <br/><br/>
 <div class="container jogo" style="display: none;">
   <div class="col-sm-2 text-center">
-     <img src="imagens/jogador_1.png">
+     <img class="img-responsive" src="https://joaoantoniosc.github.io/programas/jogador_1.png">
      <p class="nome1">NOME JOGADOR</p><br/>
      <p class="pontos1">0</p>
   </div>
@@ -206,7 +207,7 @@
 	 <p style="font-size: 30px;" id="comentarios"></p>
   </div>
   <div class="col-sm-2 text-center">
-    <img src="imagens/jogador_2.png">
+    <img class="img-responsive" src="https://joaoantoniosc.github.io/programas/jogador_2.png">
     <p class="nome2">NOME JOGADOR</p><br/>
      <p class="pontos2">0</p>
   </div>
