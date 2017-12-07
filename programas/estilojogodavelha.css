@@ -1,0 +1,40 @@
+html, body {
+	height: 100%;
+}
+
+.quadrado {
+	height: 33%;
+	width: 100%;
+	color: white;
+}
+
+.retangulo {
+	margin: 0;
+	padding: 0;
+	width: 33%;
+	height: 550px;
+}
+
+.borda-direita {
+	border-right: 1px solid black;
+}
+
+.borda-baixo {
+	border-bottom: 1px solid black; 
+}
+
+.tabuleiro {
+	width: 100%;
+}
+
+.pontos1 {
+	font-size: 25px;
+}
+
+.pontos2 {
+	font-size: 25px;
+}
+
+.img {
+	width: 80%;
+}
