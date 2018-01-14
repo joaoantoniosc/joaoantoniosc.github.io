@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +27,7 @@
       }
 
 body {
-background: url("https://wallpaperscraft.com/image/red_black_abstract_496_3840x2400.jpg");
+background: url("https://wallpaperscraft.com/image/red_black_abstract_496_1920x1080.jpg");
    background-attachment: fixed !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -41,11 +40,13 @@ background: url("https://wallpaperscraft.com/image/red_black_abstract_496_3840x2
   margin-top: 8%;
   height: 30%;
   width: 30%;
+  display: none;
 }
 
 .sublogo {
   height: 50%;
   width: 50%;
+  display: none;
 }
 .primeiro {
 background-color: white;
@@ -538,6 +539,12 @@ $(function() {
   });
 });
 <!--//https://wallhere.com/pt/wallpaper/634850https://wallpaperlayer.com/cool-black-wallpaper-110.html--//https://wallhere.com/pt/wallpaper/634850--!>
+
+$(document).ready(function(){
+	$("#logo").fadeIn(1500);
+    $("#sublogo").fadeIn(2000);
+});
+
 </script>
 
 </head>
@@ -569,14 +576,14 @@ $(function() {
   <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-<center><img class="img-responsive logo" src="https://joaoantoniosc.github.io/imagens/logowhite.png"></center>
+<center><img class="img-responsive logo" src="https://joaoantoniosc.github.io/imagens/logowhite.png" id="logo"></center>
   </div>
 </div>
 </div>
   <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-<center><img class="img-responsive sublogo" src="https://joaoantoniosc.github.io/imagens/letreiro%20c%C3%B3pia.png"></center>
+<center><img class="img-responsive sublogo" src="https://joaoantoniosc.github.io/imagens/letreiro%20c%C3%B3pia.png" id="sublogo"></center>
 </div>
 </div>
 </div>
